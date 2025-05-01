@@ -16,7 +16,8 @@ provider "kubernetes" {
 
 provider "time" {}
 
-resource "time_static" "restarted_at" {}
+resource "time_static" "deployed_at" {
+}
 
 
 resource "kubernetes_namespace" "test" {
