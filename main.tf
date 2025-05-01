@@ -99,7 +99,7 @@ resource "kubernetes_deployment" "whoami" {
           name  = "whoami"
           image = "traefik/whoami"
 
-          ports {
+          port {
             container_port = 80
           }
         }
