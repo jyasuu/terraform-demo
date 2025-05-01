@@ -26,5 +26,5 @@ nvim
 ```sh
 terraform init
 terraform plan
-terraform apply
+terraform apply -replace time_static.deployed_at -var="host=whoami.localhost"
 ```
