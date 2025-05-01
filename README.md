@@ -28,3 +28,12 @@ terraform init
 terraform plan
 terraform apply -replace time_static.deployed_at -var="host=whoami.localhost"
 ```
+
+
+
+
+## resources
+
+- [terraform registry](https://registry.terraform.io/providers/hashicorp/kubernetes/latest)
+- [k8s playground](https://killercoda.com/playgrounds/scenario/kubernetes)
+
