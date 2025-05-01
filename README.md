@@ -21,3 +21,10 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 nvim
 
 ```
+
+
+```sh
+terraform init
+terraform plan
+terraform apply
+```
