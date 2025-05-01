@@ -4,11 +4,21 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = ">= 2.0.0"
     }
+    time = {
+      source  = "hashicorp/time"
+      version = ">= 0.10.0"
+    }
   }
 }
 provider "kubernetes" {
   config_path = "~/.kube/config"
 }
+
+provider "time" {}
+
+resource "time_static" "restarted_at" {}
+
+
 resource "kubernetes_namespace" "test" {
   metadata {
     name = "nginx"
@@ -79,7 +89,7 @@ resource "kubernetes_deployment" "whoami" {
   }
 
   spec {
-    replicas = 1
+    replicas = 5
 
     selector {
       match_labels = {
@@ -91,6 +101,9 @@ resource "kubernetes_deployment" "whoami" {
       metadata {
         labels = {
           app = "whoami"
+        }
+        annotations = {
+          "deployed-at" = time_static.deployed_at.rfc3339
         }
       }
 
