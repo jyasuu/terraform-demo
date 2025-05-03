@@ -36,6 +36,8 @@ git clone https://github.com/jyasuu/terraform-demo.git
 cd terraform-demo
 terraform init
 terraform apply -var="host=whoami.localhost"
+tofu init
+tofu apply -var="host=whoami.localhost"
 ```
 
 ---
@@ -57,7 +59,25 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashi
 sudo apt update && sudo apt install terraform
 ```
 
-### 2. Clone Repository
+### 2. Install OpenTofu
+```bash
+# Download the installer script:
+curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh
+# Alternatively: wget --secure-protocol=TLSv1_2 --https-only https://get.opentofu.org/install-opentofu.sh -O install-opentofu.sh
+
+# Give it execution permissions:
+chmod +x install-opentofu.sh
+
+# Please inspect the downloaded script
+
+# Run the installer:
+./install-opentofu.sh --install-method deb
+
+# Remove the installer:
+rm -f install-opentofu.sh
+```
+
+### 3. Clone Repository
 ```bash
 git clone https://github.com/jyasuu/terraform-demo.git
 cd terraform-demo
@@ -70,16 +90,19 @@ cd terraform-demo
 ### Initialize Infrastructure
 ```bash
 terraform init
+tofu init
 ```
 
 ### Preview Changes
 ```bash
 terraform plan
+tofu plan
 ```
 
 ### Apply Configuration
 ```bash
 terraform apply -replace time_static.deployed_at -var="host=whoami.localhost"
+tofu apply -replace time_static.deployed_at -var="host=whoami.localhost"
 ```
 
 > 📝 **Note:** Use `-replace` to force resource recreation and `-var` for custom parameters
@@ -121,6 +144,7 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 To destroy all provisioned resources:
 ```bash
 terraform destroy
+tofu destroy
 ```
 
 ---
@@ -130,12 +154,15 @@ terraform destroy
 ```bash
 # Format configuration files
 terraform fmt
+tofu fmt
 
 # Validate configuration syntax
 terraform validate
+tofu validate
 
 # Check required versions
 terraform version
+tofu version
 ```
 
 > ⚠️ **Important:** Always store sensitive values in environment variables rather than command-line flags!
