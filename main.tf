@@ -40,26 +40,3 @@ resource "kubernetes_pod" "whoami" {
   }
 }
 
-
-resource "kubernetes_service" "whoami-svc" {
-  metadata {
-    namespace = kubernetes_namespace.pod-demo.metadata[0].name
-    name      = "whoami"
-    labels = {
-      "key" = "value"
-    }
-  }
-  spec {
-    selector = {
-      "app" = "whoami"
-    }
-    type = "LoadBalancer"
-    port {
-      protocol    = "TCP"
-      port        = 80
-      target_port = 80
-    }
-
-  }
-
-}
