@@ -9,7 +9,6 @@ export let options = {
   ],
 };
 // kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-// kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 // kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/high-availability-1.21+.yaml
 // kubectl port-forward svc/hpa-demo 8080:80 -n hpa-demo 
 // watch -n 1 "kubectl get hpa -n hpa-demo  && kubectl get pods -n hpa-demo"
