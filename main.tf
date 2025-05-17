@@ -177,16 +177,6 @@ resource "kubernetes_ingress_v1" "whoami" {
 }
 
 
-resource "kubernetes_config_map" "simple" {
-  metadata {
-    name = "example-config"
-  }
-  data = {
-    api_host = "myhost:443"
-    db_host  = "dbhost:5432"
-  }
-}
-
 
 resource "kubernetes_config_map" "from_file" {
   metadata {
