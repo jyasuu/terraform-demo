@@ -69,7 +69,7 @@ resource "kubernetes_service" "hpa_demo" {
   }
 }
 
-resource "kubernetes_horizontal_pod_autoscaler" "hpa" {
+resource "kubernetes_horizontal_pod_autoscaler_v2" "hpa" {
   metadata {
     name = "hpa-demo-hpa"
   }
