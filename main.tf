@@ -280,13 +280,6 @@ resource "kubernetes_pod" "envfrom_example" {
           name = kubernetes_config_map.example.metadata[0].name
         }
       }
-
-      env_from {
-        config_map_ref {
-          name   = kubernetes_config_map.example.metadata[0].name
-          prefix = "APP_"
-        }
-      }
     }
   }
 }
