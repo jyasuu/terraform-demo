@@ -177,6 +177,16 @@ resource "kubernetes_ingress_v1" "whoami" {
 }
 
 
+resource "kubernetes_config_map" "example" {
+  metadata {
+    name = "example-config"
+  }
+  data = {
+    api_host = "myhost:443"
+    db_host  = "dbhost:5432"
+    feature_flag = "enabled"
+  }
+}
 
 resource "kubernetes_config_map" "from_file" {
   metadata {
@@ -202,7 +212,7 @@ resource "kubernetes_pod" "env_example" {
         name = "API_HOST"
         value_from {
           config_map_key_ref {
-            name = kubernetes_config_map.simple.metadata[0].name
+            name = kubernetes_config_map.example.metadata[0].name
             key  = "api_host"
           }
         }
@@ -211,7 +221,7 @@ resource "kubernetes_pod" "env_example" {
         name = "DB_HOST"
         value_from {
           config_map_key_ref {
-            name = kubernetes_config_map.simple.metadata[0].name
+            name = kubernetes_config_map.example.metadata[0].name
             key  = "db_host"
           }
         }
@@ -245,16 +255,6 @@ resource "kubernetes_pod" "volume_example" {
 }
 
 
-resource "kubernetes_config_map" "example" {
-  metadata {
-    name = "example-config"
-  }
-  data = {
-    api_host = "myhost:443"
-    db_host  = "dbhost:5432"
-    feature_flag = "enabled"
-  }
-}
 
 resource "kubernetes_pod" "envfrom_example" {
   metadata {
