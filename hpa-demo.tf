@@ -71,6 +71,7 @@ resource "kubernetes_service" "hpa_demo" {
 
 resource "kubernetes_horizontal_pod_autoscaler_v2" "hpa" {
   metadata {
+    namespace = kubernetes_namespace.hpa-demo.metadata[0].name
     name = "hpa-demo-hpa"
   }
 
