@@ -7,16 +7,18 @@ resource "kubernetes_namespace" "pod-demo" {
 resource "kubernetes_pod" "whoami" {
   metadata {
     namespace = kubernetes_namespace.pod-demo.metadata[0].name
-    name      = whoami
+    name      = "whoami"
     labels = {
-      app = whoami
+      app = "whoami"
     }
 
   }
   spec {
+    restart_policy = "OnFailure"
     container {
-      name  = whoami1
-      image = traefik / whoami
+      name    = "whoami1"
+      image   = "traefik/whoami"
+      command = ["sh", "-c", "whoami"]
       port {
         container_port = 80
       }
@@ -25,8 +27,8 @@ resource "kubernetes_pod" "whoami" {
       }
     }
     container {
-      name  = whoami2
-      image = traefik / whoami
+      name  = "whoami2"
+      image = "traefik/whoami"
       port {
         container_port = 80
       }
