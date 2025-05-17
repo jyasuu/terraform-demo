@@ -8,6 +8,7 @@ export let options = {
     { duration: '1m', target: 0 },   // Ramp-down
   ],
 };
+// kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 // kubectl port-forward svc/hpa-demo 8080:80
 // kubectl get hpa -n hpa-demo  && kubectl get pods -n hpa-demo 
 export default function () {
